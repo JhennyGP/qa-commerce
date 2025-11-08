@@ -20,7 +20,7 @@ cd qa-commerce
 
 #### Para instalar as dependencias:
 ```
-npm install 
+npm install
 ```
 
 #### Para subir o servidor e o banco:
@@ -36,7 +36,39 @@ A documentação funciona em: http://localhost:3000/api-docs/
 *Parceria: Fábio Araújo, Bruna Emerich e Tamara Fontanella
 
 
+# Automação de Testes – Cypress
 
+Os testes automatizados validam fluxos de API e UI da aplicação.
 
+### Pré-requisitos adicionais
 
+```
+npm install -D cypress
+```
 
+---
+
+### Executando os testes
+
+#### Abrir interface do Cypress
+
+```
+npx cypress open
+```
+
+#### Rodar tudo em modo headless
+
+```
+npx cypress run
+```
+
+---
+
+#### Testes executados com sucesso
+![Checkout realizado com sucesso](./assets/run.png)
+
+---
+
+**Autora:** Jennifer Gabriely Pinto
+
+---
