@@ -1,263 +1,446 @@
 {
-    "info": {
-      "name": "QA-Commerce API Collection",
-      "description": "Collection para a API QA-Commerce com validação JWT.",
-      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-    },
-    "item": [
-      {
-        "name": "Login",
-        "request": {
-          "method": "POST",
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"email\": \"admin@admin.com\",\n  \"password\": \"admin\"\n}"
-          },
-          "url": {
-            "raw": "http://localhost:3000/api/login",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "3000",
-            "path": ["api", "login"]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Get Users",
-        "request": {
-          "method": "GET",
-          "header": [
-            {
-              "key": "Authorization",
-              "value": "Bearer {{token}}"
-            }
-          ],
-          "url": {
-            "raw": "http://localhost:3000/api/users",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "3000",
-            "path": ["api", "users"]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Create User",
-        "request": {
-          "method": "POST",
-          "header": [
-            {
-              "key": "Authorization",
-              "value": "Bearer {{token}}"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"Password123!\",\n  \"isAdmin\": false\n}"
-          },
-          "url": {
-            "raw": "http://localhost:3000/api/users",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "3000",
-            "path": ["api", "users"]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Update User",
-        "request": {
-          "method": "PUT",
-          "header": [
-            {
-              "key": "Authorization",
-              "value": "Bearer {{token}}"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"Password123!\",\n  \"isAdmin\": false\n}"
-          },
-          "url": {
-            "raw": "http://localhost:3000/api/users/1",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "3000",
-            "path": ["api", "users", "1"]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Delete User",
-        "request": {
-          "method": "DELETE",
-          "header": [
-            {
-              "key": "Authorization",
-              "value": "Bearer {{token}}"
-            }
-          ],
-          "url": {
-            "raw": "http://localhost:3000/api/users/1",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "3000",
-            "path": ["api", "users", "1"]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Add Product to Cart",
-        "request": {
-          "method": "POST",
-          "header": [
-            {
-              "key": "Authorization",
-              "value": "Bearer {{token}}"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"userId\": 1,\n  \"productId\": 101,\n  \"quantity\": 2\n}"
-          },
-          "url": {
-            "raw": "http://localhost:3000/api/carrinho",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "3000",
-            "path": ["api", "carrinho"]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Update Cart Item",
-        "request": {
-          "method": "PUT",
-          "header": [
-            {
-              "key": "Authorization",
-              "value": "Bearer {{token}}"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"userId\": 1,\n  \"productId\": 101,\n  \"quantity\": 3\n}"
-          },
-          "url": {
-            "raw": "http://localhost:3000/api/carrinho",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "3000",
-            "path": ["api", "carrinho"]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Remove Cart Item",
-        "request": {
-          "method": "DELETE",
-          "header": [
-            {
-              "key": "Authorization",
-              "value": "Bearer {{token}}"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"userId\": 1,\n  \"productId\": 101\n}"
-          },
-          "url": {
-            "raw": "http://localhost:3000/api/carrinho",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "3000",
-            "path": ["api", "carrinho"]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Checkout",
-        "request": {
-          "method": "POST",
-          "header": [
-            {
-              "key": "Authorization",
-              "value": "Bearer {{token}}"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"userId\": 1,\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"address\": \"123 Main St\",\n  \"number\": \"456\",\n  \"cep\": \"12345678\",\n  \"phone\": \"1234567890\",\n  \"email\": \"john.doe@example.com\",\n  \"paymentMethod\": \"credit_card\",\n  \"cardNumber\": \"1234123412341234\",\n  \"cardExpiry\": \"12/2025\",\n  \"cardCvc\": \"123\"\n}"
-          },
-          "url": {
-            "raw": "http://localhost:3000/api/checkout",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "3000",
-            "path": ["api", "checkout"]
-          }
-        },
-        "response": []
-      }
-    ],
-    "event": [
-      {
-        "listen": "prerequest",
-        "script": {
-          "exec": [
-            "pm.environment.set(\"token\", pm.response.json().token);"
-          ]
-        }
-      },
-      {
-        "listen": "test",
-        "script": {
-          "exec": [
-            "if (pm.response.code === 200 && pm.request.url.path[1] === \"login\") {",
-            "  const jsonData = pm.response.json();",
-            "  pm.environment.set(\"token\", jsonData.token);",
-            "}"
-          ]
-        }
-      }
-    ]
-  }
-  
+	"info": {
+		"_postman_id": "58203241-ef45-456e-a85c-b628edb89d14",
+		"name": "QA-Commerce API Collection",
+		"description": "Collection para a API QA-Commerce com validação JWT.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49954933",
+		"_collection_link": "https://jhennygp-9601903.postman.co/workspace/Jennifer-G-Pinto's-Workspace~c58d265c-b69a-4ded-8f5e-e857ab4d6278/collection/49954933-58203241-ef45-456e-a85c-b628edb89d14?action=share&source=collection_link&creator=49954933"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"admin@admin.com\",\n  \"password\": \"admin\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 201 para criação\", function () {\r",
+							"  pm.expect(pm.response.code).to.eql(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@exampssssle.com\",\n  \"password\": \"Password123!\",\n  \"isAdmin\": false\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@examsssple.com\",\n  \"password\": \"Password123!\",\n  \"isAdmin\": false\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/users/1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product to Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 201\", function () {\r",
+							"  pm.expect(pm.response.code).to.eql(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": 1,\n  \"productId\": 101,\n  \"quantity\": 2\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/carrinho",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"carrinho"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Cart Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 404\", function () {\r",
+							"  pm.expect(pm.response.code).to.eql(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": 1,\n  \"productId\": 101,\n  \"quantity\": 3\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/carrinho",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"carrinho"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Cart Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 404\", function () {\r",
+							"  pm.expect(pm.response.code).to.eql(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": 1,\n  \"productId\": 101\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/carrinho",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"carrinho"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Checkout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 201 para criação\", function () {\r",
+							"  pm.expect(pm.response.code).to.eql(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": 1,\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"address\": \"123 Main St\",\n  \"number\": \"456\",\n  \"cep\": \"12345678\",\n  \"phone\": \"1234567890\",\n  \"email\": \"john.doe@example.com\",\n  \"paymentMethod\": \"credit_card\",\n  \"cardNumber\": \"1234123412341234\",\n  \"cardExpiry\": \"12/2025\",\n  \"cardCvc\": \"123\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/checkout",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					"// pm.environment.set(\"token\", pm.response.json().token);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					"// if (pm.response.code === 200 && pm.request.url.path[1] === \"login\") {",
+					"//   const jsonData = pm.response.json();",
+					"//   pm.environment.set(\"token\", jsonData.token);",
+					"// }"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

@@ -65,7 +65,16 @@ npx cypress run
 ---
 
 #### Testes executados com sucesso
-![Checkout realizado com sucesso](./assets/run.png)
+![Testes executados com sucesso](./assets/run.png)
+
+---
+
+# Testes de API
+
+Foi adicionado á collection pre-existente do projeto (collection-pm.json) scripts de testes para validação de status code
+
+Exemplo:
+![Testes no postman scripts de teste](./assets/testResults.png)
 
 ---
 
