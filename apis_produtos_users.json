@@ -1,0 +1,278 @@
+{
+	"info": {
+		"_postman_id": "80c939a6-c4f3-4a95-bfd1-f14cc5c86ec1",
+		"name": "API - Produtos & Users (validações)",
+		"description": "Coleção para validar /produtos e /users com testes de status, estrutura e cenários de email duplicado.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49954933",
+		"_collection_link": "https://jhennygp-9601903.postman.co/workspace/c58d265c-b69a-4ded-8f5e-e857ab4d6278/collection/49954933-80c939a6-c4f3-4a95-bfd1-f14cc5c86ec1?action=share&source=collection_link&creator=49954933"
+	},
+	"item": [
+		{
+			"name": "1) PRODUTOS",
+			"item": [
+				{
+					"name": "1.1 GET /produtos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/produtos?page=1&limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Retorna a lista de produtos com suporte a paginação."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2) USERS",
+			"item": [
+				{
+					"name": "2.1 POST /users",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status 201', function () { pm.response.to.have.status(201); });"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Jhenny Test\", \"email\": \"qa_123456@test.com\", \"password\": \"passw0rd!\"}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Cria um novo usuário. Email não pode ser repetido."
+					},
+					"response": []
+				},
+				{
+					"name": "2.2 POST /users — 400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status 400 em email duplicado', function () { pm.response.to.have.status(400); });"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Jhenny Test\", \"email\": \"qa_123456@test.com\", \"password\": \"passw0rd!\"}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Tenta criar outro usuário com o mesmo email. Deve retornar 400 (validação)."
+					},
+					"response": []
+				},
+				{
+					"name": "2.3 GET /users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status 200', function () { pm.response.to.have.status(200); });"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Retorna a lista de usuários."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Gera email randômico se necessário",
+					"let remail = pm.collectionVariables.get('randomEmail');",
+					"if (!remail) {",
+					"  const now = Date.now();",
+					"  const rnd = Math.floor(Math.random()*100000);",
+					"  remail = `qa_${now}_${rnd}@example.com`;",
+					"  pm.collectionVariables.set('randomEmail', remail);",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000"
+		},
+		{
+			"key": "page",
+			"value": "1"
+		},
+		{
+			"key": "limit",
+			"value": "10"
+		},
+		{
+			"key": "userName",
+			"value": "QA Test"
+		},
+		{
+			"key": "password",
+			"value": "Passw0rd!"
+		},
+		{
+			"key": "randomEmail",
+			"value": ""
+		},
+		{
+			"key": "lastUserEmail",
+			"value": ""
+		},
+		{
+			"key": "lastUserId",
+			"value": ""
+		}
+	]
+}
